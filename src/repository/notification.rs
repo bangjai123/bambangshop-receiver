@@ -9,4 +9,10 @@ lazy_static! {
     static ref NOTIFICATIONS: RwLock<Vec<Notification>> = RwLock::new(vec![]);
 }
 
-impl NotificationRepository {}
+pub struct NotificationRepository;
+
+impl NotificationRepository {    pub fn add(notification: Notification) -> Notification {
+    NOTIFICATIONS.write().unwrap()
+        .push(notification.clone());
+    return notification;
+}}
