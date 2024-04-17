@@ -85,5 +85,16 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. Penggunaan `RwLock<>` diperlukan untuk menyinkronkran penggunaan `vec` dari notifikasi. `RwLock<>` memiliki beberapa keunggulan dibanding `mutex` misalnya dalam hal performa untuk membaca banyak data secara bersamaan. Selain itu, `RwLock<>` menyediakan mekanisme yang lebih aman dalam mengakses data secara bersamaan. `RwLock<>` juga memungkinkan strategi sinkronisasi yang lebih fleksibel. Di sisi lain, `Mutex<>` memiliki akses yang ekslusif. Selain itu, operasi membaca pada `Mutex<>` bahkan bisa memblokir operasi baca lainnya sehingga menimbulkan bottleneck. Melihat kekurangan dan kelebihan di atas, dapat kita simpulkan bahwa pada kasus ini diperlukan `RwLock<>` untuk memenuhi semua kebutuhan yang ada dalam projek.
+
+2. Mutasi variabel memiliki resiko pada bidang keselamatan, pengelolaan memori, dan keselamatan dalam pemrograman konkuren. Hal inilah yang ingin rust hindari dengan tidak membolehkan adanya mutasi variabel. Dengan demikian, dapat dikatakan bahwa pertimbangan rust dalam tidak mengijinkan adanya mutasi variabel berkaitan erat dengan keselamatan dan prediktabilitas program, keselamatan pemrograman konkuren, kepemilikan dan mutasi global, serta mendorong penggunaan pola pemrograman yang lebih aman dan eksplisit. 
 
 #### Reflection Subscriber-2
+
+1. Saya belum melakukan ekslorasi hal di luar tutorial ini. Saya belum melakukannya karena masih banyak tugas lain yang juga harus dilakukan. Akan tetapi, saya akan berusahan untuk mempelajariinya pada masa yang akan datang
+
+2. Penggunaan observer pattern dapat mempermudah proses penambahan subscriber baru. Penambahan subscriber dilakukan hanya dengan membuat objek subcriber pada suatu subject tertentu. Hal ini dapat terjadi karena publisher tidak memiliki keterikatan yang kuat dengan observer sehingga penambahan subscriber tidak akan mengganggu fungsionalitas. Jika kita melakukan spawning lebih dari satu main app, sebanarnya penambahannyua tetap mudah karena penambahan akan dilakukan pada instance main app nya masing-masing. Hal yang mungkin perlu dipikirkan adalah bagaimana melakukan sinkronisasi antar appnya.
+
+3. Saya belum mencoba untuk membuat test atau peningkatan dokumentasi pada koleksi postman saya sendiri. Akan tetapi, saya berkomitmen untuk mempelajari serta mengeksplorasi lebih banyak hal lainnya pada masa mendatang.
+
+
